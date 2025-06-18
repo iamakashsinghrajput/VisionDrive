@@ -1,26 +1,45 @@
-@import "tailwindcss";
+@import 'react-day-picker/dist/style.css';
+@import 'rc-slider/assets/index.css';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer components {
+  .input-field-redesigned {
+    @apply w-full bg-zinc-800/50 border border-zinc-700 rounded-lg py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300;
+  }
+  
+  .btn-primary-gradient {
+    @apply bg-gradient-to-r from-cyan-400 to-teal-400 text-black font-bold tracking-wide;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  .input-auth {
+        @apply w-full bg-transparent border border-zinc-700 rounded-md py-3 px-4 text-gray-200 placeholder-zinc-500 transition-all duration-300;
+        @apply focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.auth-input {
+    @apply w-full bg-zinc-800/50 border border-zinc-700 rounded-lg py-3.5 px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300;
+}
+
+.rdp {
+    --rdp-cell-size: 40px;
+    --rdp-accent-color: #22d3ee;
+    --rdp-background-color: #06b6d4;
+    --rdp-accent-color-dark: #0891b2;
+    --rdp-background-color-dark: #115e59;
+    --rdp-outline: 2px solid var(--rdp-accent-color);
+    --rdp-outline-selected: 3px solid var(--rdp-accent-color);
+    --rdp-selected-color: #000;
+}
+.rdp-caption_label, .rdp-head_cell, .rdp-nav_button {
+    color: #d1d5db; /* gray-300 */
+}
+.rdp-day {
+    color: #e5e7eb; /* gray-200 */
+}
+.rdp-day_outside {
+    color: #4b5563; /* gray-600 */
 }

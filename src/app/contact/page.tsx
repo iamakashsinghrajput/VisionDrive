@@ -21,7 +21,7 @@ export default function ContactPage() {
                             <MapPin className="h-6 w-6 text-cyan-400 mt-1 flex-shrink-0" />
                             <div>
                                 <h3 className="font-semibold text-white">Our Headquarters</h3>
-                                <p className="text-zinc-400">123 Visionary Road, Suite 500, Tech City, 10101</p>
+                                <p className="text-zinc-400">Gaur City-II, Greater Noida West</p>
                             </div>
                         </div>
                         <div className="flex items-start gap-4">
@@ -29,7 +29,7 @@ export default function ContactPage() {
                             <div>
                                 <h3 className="font-semibold text-white">Email Us</h3>
                                 <p className="text-zinc-400">For support and general inquiries.</p>
-                                <a href="mailto:support@visiondrive.com" className="text-cyan-400 hover:underline">support@visiondrive.com</a>
+                                <a href="mailto:akash21052000singh@gmail.com" className="text-cyan-400 hover:underline">support@visiondrive.com</a>
                             </div>
                         </div>
                          <div className="flex items-start gap-4">
@@ -37,7 +37,7 @@ export default function ContactPage() {
                             <div>
                                 <h3 className="font-semibold text-white">Call Us</h3>
                                 <p className="text-zinc-400">Available 24/7 for our members.</p>
-                                <a href="tel:+1234567890" className="text-cyan-400 hover:underline">+1 (234) 567-890</a>
+                                <a href="tel:+919351736629" className="text-cyan-400 hover:underline">+91 (9351) 736629</a>
                             </div>
                         </div>
                     </div>

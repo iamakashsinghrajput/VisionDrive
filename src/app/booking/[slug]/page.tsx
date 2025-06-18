@@ -170,7 +170,7 @@ export default function BookingPage() {
                              <div className="mt-8">
                                 <button onClick={handlePayment} disabled={!dateRange?.from || !dateRange?.to || isProcessing} className="w-full flex items-center justify-center gap-3 px-10 py-4 bg-cyan-400 text-black text-lg font-bold rounded-lg hover:bg-cyan-500 transition-all hover:shadow-cyan-glow hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed">
                                     {isProcessing ? <Loader2 className="animate-spin" /> : <CreditCard size={20} />}
-                                    {isProcessing ? 'Processing...' : 'Confirm &amp; Pay'}
+                                    {isProcessing ? 'Processing...' : 'Confirm & Pay'}
                                 </button>
                              </div>
                         </div>

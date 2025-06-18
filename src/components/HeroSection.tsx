@@ -42,7 +42,6 @@ const HeroSection = () => {
 
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden font-sans">
-      {/* Background Video */}
       <video
         autoPlay
         loop
@@ -50,7 +49,7 @@ const HeroSection = () => {
         playsInline
         className="absolute z-0 w-auto min-w-full min-h-full max-w-none"
       >
-        <source src="/herovid.mp4" type="video/mp4" />
+        <source src="/herovideo.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
@@ -79,7 +78,7 @@ const HeroSection = () => {
           initial="hidden"
           animate="visible"
           transition={{ delay: 0.8 }}
-          className="mt-6 max-w-2xl text-lg text-gray-300 tracking-wide"
+          className="mt-6 max-w-2xl text-xl font-bold text-gray-100 tracking-wide opacity-[10%]"
         >
           Go beyond transportation. Rent an experience. Our curated fleet is ready for your next adventure.
         </motion.p>

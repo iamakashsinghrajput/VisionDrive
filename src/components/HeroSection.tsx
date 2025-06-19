@@ -1,137 +1,87 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { motion } from "framer-motion";
-import { ArrowRight, Car, CalendarCheck, Headset, ChevronDown } from "lucide-react";
 import Link from "next/link";
+import { MouseEvent, useRef} from "react";
+import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import dynamic from "next/dynamic";
 
-const wordAnimation = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.1,
-      type: "spring",
-      stiffness: 100,
-      damping: 20,
-    },
-  }),
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-};
+const GridCanvas = dynamic(() => import("./GridCanvas"), { ssr: false });
 
 const HeroSection = () => {
-  const headline = "Unleash Your Journey";
-  const headlineWords = headline.split(" ");
   const { status } = useSession();
   const isAuthenticated = status === "authenticated";
+  const fleetLink = isAuthenticated ? "/cars" : "/signin?callbackUrl=/cars";
 
-  const fleetLink = isAuthenticated
-    ? "/cars"
-    : "/signin?callbackUrl=/cars";
+  const mouseX = useMotionValue(-1000);
+  const mouseY = useMotionValue(-1000);
 
-  const features = [
-    { icon: <Car className="h-7 w-7 text-cyan-300" />, text: "Premium Fleet Selection" },
-    { icon: <CalendarCheck className="h-7 w-7 text-cyan-300" />, text: "Seamless Booking Process" },
-    { icon: <Headset className="h-7 w-7 text-cyan-300" />, text: "24/7 VIP Concierge" },
-  ];
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    mouseX.set(e.clientX);
+    mouseY.set(e.clientY);
+  };
+
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 25]);
+  const zDrive = useTransform(scrollYProgress, [0, 1], [0, -500]);
+  const zBeyond = useTransform(scrollYProgress, [0, 1], [0, 800]);
+  const opacity = useTransform(scrollYProgress, [0.9, 1], [1, 0]);
+  const blur = useTransform(scrollYProgress, [0.85, 1], ["blur(0px)", "blur(40px)"]);
 
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden font-sans">
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute z-0 w-auto min-w-full min-h-full max-w-none"
+    <div ref={heroRef} className="relative z-0 h-[200vh] w-full">
+      <div
+        onMouseMove={handleMouseMove}
+        className="sticky top-0 h-[93vh] w-full overflow-hidden"
       >
-        <source src="/herovideo.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-
-      <div className="absolute inset-0 z-10 bg-radial-gradient-hero" />
-
-      <div className="relative z-20 flex flex-col items-center text-center text-white px-4">
-        <motion.h1
-          initial="hidden"
-          animate="visible"
-          className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter font-display"
+        <div className="absolute inset-0 bg-[#101015]" />
+        
+        <GridCanvas mouseX={mouseX} mouseY={mouseY} />
+        
+        <motion.div
+          className="absolute inset-0 z-20 flex items-center justify-center"
+          style={{
+            opacity,
+            filter: blur,
+            perspective: "1000px",
+          }}
         >
-          {headlineWords.map((word, i) => (
-            <motion.span
-              key={i}
-              custom={i}
-              variants={wordAnimation}
-              className={`inline-block mr-4 ${word === "Journey" ? "text-cyan-400" : ""}`}
-            >
-              {word}
-            </motion.span>
-          ))}
-        </motion.h1>
-
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.8 }}
-          className="mt-6 max-w-2xl text-xl font-bold text-gray-100 tracking-wide opacity-[10%]"
-        >
-          Go beyond transportation. Rent an experience. Our curated fleet is ready for your next adventure.
-        </motion.p>
+          <motion.div style={{ scale, transformStyle: "preserve-3d" }}>
+            <h1 className="relative select-none text-center font-display text-8xl font-black text-white/90 md:text-9xl">
+              <motion.div style={{ translateZ: zDrive }}>DRIVE</motion.div>
+              <motion.div style={{ translateZ: zBeyond }}>BEYOND</motion.div>
+            </h1>
+          </motion.div>
+        </motion.div>
 
         <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 1.0 }}
-          className="mt-10 flex flex-col sm:flex-row items-center gap-4"
+          style={{ opacity: useTransform(scrollYProgress, [0, 0.2], [1, 0]) }}
+          className="absolute inset-0 z-30"
         >
-            <Link
-                href={fleetLink}
-                className="group flex w-full sm:w-auto items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-cyan-400 to-teal-400 px-8 py-3 text-base font-bold text-zinc-900 transition-all duration-300 hover:shadow-cyan-glow hover:-translate-y-1"
-            >
-                Browse The Fleet
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </Link>
-          <Link
-            href="/how-it-works"
-            className="w-full sm:w-auto text-center rounded-lg border border-white/30 bg-white/10 px-8 py-3 text-base font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20 hover:border-white/50"
-          >
-            How It Works
-          </Link>
+          <div className="absolute bottom-0 w-full p-6 md:p-8">
+            <div className="container mx-auto flex items-center justify-between">
+                <div className="flex items-center gap-2 font-mono text-sm font-bold uppercase tracking-widest text-white">
+                  <span>VISION</span>
+                  <span className="text-[#00BFFF]">DRIVE</span>
+                </div>
+                <Link
+                  href={fleetLink}
+                  className="group flex items-center gap-3 rounded-md border-2 border-white/30 px-5 py-2 font-mono text-sm font-semibold text-white/90 transition-colors duration-300 hover:border-[#00BFFF] hover:text-white"
+                >
+                  ACCESS_FLEET
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+            </div>
+          </div>
         </motion.div>
       </div>
-
-      <div className="absolute bottom-0 w-full z-20 pb-6">
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
-          {features.map((feature, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.2 + i * 0.1 }}
-              className="flex items-center justify-center gap-4 p-4 rounded-xl bg-black/20 backdrop-blur-md border border-white/10"
-            >
-              {feature.icon}
-              <span className="font-medium text-white">{feature.text}</span>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-      
-       <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.0 }}
-          className="absolute bottom-24 md:bottom-32 z-20"
-        >
-          <ChevronDown className="h-8 w-8 text-white/50 animate-bounce" />
-       </motion.div>
-    </section>
+    </div>
   );
 };
 

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Link from 'next/link';
 import { Github, Linkedin, Twitter } from 'lucide-react';
@@ -75,12 +75,27 @@ return (
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-zinc-800 flex flex-col sm:flex-row justify-between items-center">
-            <p className="text-sm text-zinc-500">© {new Date().getFullYear()} VISIONDRIVE. All Rights Reserved.</p>
-            <div className="flex gap-4 mt-4 sm:mt-0">
-                <a href="#" className="hover:text-white transition-colors"><Twitter size={20} /></a>
-                <a href="#" className="hover:text-white transition-colors"><Github size={20} /></a>
-                <a href="#" className="hover:text-white transition-colors"><Linkedin size={20} /></a>
+        <div className="mt-16 pt-8 border-t border-zinc-800 flex flex-col items-center gap-4">
+            <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p className="text-sm text-zinc-500 order-2 sm:order-1">
+                    © {new Date().getFullYear()} VISIONDRIVE. All Rights Reserved.
+                </p>
+                <div className="flex gap-4 order-1 sm:order-2">
+                    <a href="#" aria-label="Twitter" className="hover:text-white transition-colors"><Twitter size={20} /></a>
+                    <a href="#" aria-label="Github" className="hover:text-white transition-colors"><Github size={20} /></a>
+                    <a href="#" aria-label="LinkedIn" className="hover:text-white transition-colors"><Linkedin size={20} /></a>
+                </div>
+            </div>
+            <div className="text-sm text-zinc-600 mt-4">
+                Designed by{" "}
+                <a
+                    href="https://portfolio-lyart-gamma-39.vercel.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-zinc-500 hover:text-cyan-400 transition-colors"
+                >
+                    Akash Studios
+                </a>
             </div>
         </div>
       </div>

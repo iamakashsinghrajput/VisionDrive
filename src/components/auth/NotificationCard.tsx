@@ -1,4 +1,3 @@
-// src/components/auth/NotificationCard.tsx
 import { motion } from 'framer-motion';
 
 type NotificationCardProps = {

@@ -1,4 +1,3 @@
-// src/components/Logo.tsx
 import Link from "next/link";
 
 export const Logo = ({ className = "" }: { className?: string }) => {

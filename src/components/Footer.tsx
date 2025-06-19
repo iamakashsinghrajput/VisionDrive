@@ -82,8 +82,8 @@ return (
                 </p>
                 <div className="flex gap-4 order-1 sm:order-2">
                     <a href="#" aria-label="Twitter" className="hover:text-white transition-colors"><Twitter size={20} /></a>
-                    <a href="#" aria-label="Github" className="hover:text-white transition-colors"><Github size={20} /></a>
-                    <a href="#" aria-label="LinkedIn" className="hover:text-white transition-colors"><Linkedin size={20} /></a>
+                    <a href="https://github.com/iamakashsinghrajput" aria-label="Github" className="hover:text-white transition-colors"><Github size={20} /></a>
+                    <a href="https://www.linkedin.com/in/akashsingh21/" aria-label="LinkedIn" className="hover:text-white transition-colors"><Linkedin size={20} /></a>
                 </div>
             </div>
             <div className="text-sm text-zinc-600 mt-4">

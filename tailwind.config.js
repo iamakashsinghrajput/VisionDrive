@@ -13,7 +13,6 @@ export const theme = {
     fontFamily: {
       sans: ['var(--font-inter)', ...fontFamily.sans],
       display: ['var(--font-poppins)', ...fontFamily.sans],
-      // display: ['"Monument Extended"', 'sans-serif'], 
     },
     colors: {
         "vision-black": "#0A0A0A",

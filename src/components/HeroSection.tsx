@@ -122,7 +122,7 @@ export default function HeroSection() {
             className="absolute inset-0 flex items-center justify-center"
           >
             <div className="relative w-[130%] max-w-none">
-                <Image src="/cars/mainImage.png" alt="Featured Car" width={1200} height={700} priority />
+                <Image src="/mainImage.png" alt="Featured Car" width={1200} height={700} priority />
             </div>
           </motion.div>
 

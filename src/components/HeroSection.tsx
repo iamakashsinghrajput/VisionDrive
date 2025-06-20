@@ -20,15 +20,12 @@ const fadeUp = {
 
 const carAnimation = {
   hidden: { opacity: 0, scale: 0.8, x: 50 },
-  visible: { opacity: 1, scale: 1, x: 0, transition: { type: "spring", stiffness: 50, damping: 15, delay: 0.6 } },
+  visible: { opacity: 1, scale: 1, x: 0, transition: { type: "spring", stiffness: 50, damping: 15, delay: 0.2 } },
 };
 
 const brandLogos = [
   { name: "Tata", src: "/icons/tata.svg" },
   { name: "Kia", src: "/icons/kia2.svg" },
-  { name: "BMW", src: "/brands/bmw.svg" },
-  { name: "Porsche", src: "/brands/porsche.svg" },
-  { name: "Mercedes", src: "/brands/mercedes.svg" },
 ];
 
 export default function HeroSection() {

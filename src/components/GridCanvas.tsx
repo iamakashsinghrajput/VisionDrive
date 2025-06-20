@@ -1,4 +1,3 @@
-// components/GridCanvas.tsx
 "use client";
 import { useRef, useEffect } from 'react';
 import { MotionValue } from 'framer-motion';
